@@ -30,7 +30,6 @@ export default {
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(4, 1fr);
-  transition: .4s ease;
 
   @media (max-width: 1180px) {
     grid-template-columns: repeat(3, 1fr);
