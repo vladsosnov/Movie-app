@@ -1,32 +1,51 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+  <div class="app">
+    <app-header />
+    <search-movie-result
+      v-if="searchMovies" 
+      @close-results="clearSearchMovies"
+    />
     <router-view/>
+    <app-footer />
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import AppHeader from './components/Shared/AppHeader'
+import SearchMovieResult from './components/SearchMovieResult'
+import AppFooter from './components/Shared/AppFooter'
 
-#nav {
-  padding: 30px;
+export default {
+  name: 'App',
+  components: {
+    AppHeader,
+    SearchMovieResult,
+    AppFooter
+  },
+  computed: {
+    searchMovies () {
+      return JSON.stringify(this.$store.state.searchMovies) !== "{}"
+    }
+  },
+  methods: {
+    async clearSearchMovies () {
+      return this.$store.state.searchMovies = {}
+    }
+  }
 }
+</script>
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+<style lang="scss">
+@import url('./assets/normalize.css');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+html {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  background-color: #f2f2f2;
+
+  @media (max-width: 1024px){
+    font-size: 12px;
+  }
 }
 </style>
