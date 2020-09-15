@@ -1,9 +1,9 @@
 <template>
   <div class="movie-card">
     <img
-      v-if="movie.poster_path !== null" 
-      :src="`${fullImagePath}`"
-      :alt="`${movie.title}`"
+      v-if="movie.poster_path" 
+      :src="fullImagePath"
+      :alt="movie.title"
       class="movie-card__poster"
     >
     <div class="movie-card__detail detail">

@@ -6,7 +6,13 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     searchMovies: [],
-    savedMovies: []
+    savedMovies: [],
+    isSearchMovieResultVisible: false
+  },
+  getters: {
+    searchMovies (state) {
+      return state.searchMovies
+    }
   },
   mutations: {
     setSearchMovies (state, searchMovies) {
@@ -19,6 +25,9 @@ export const store = new Vuex.Store({
         poster_path: movie.poster_path,
         overview: movie.overview
       })
+    },
+    setSearchMoviesVisibility (state) {
+      state.isSearchMovieResultVisible = !state.isSearchMovieResultVisible
     }
   },
   actions: {

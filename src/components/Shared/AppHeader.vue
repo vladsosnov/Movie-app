@@ -17,7 +17,10 @@
           Saved Movies
         </router-link>
       </nav>
-      <app-search-input class="app-header__search-box" />
+      <app-search-input
+        class="app-header__search-box"
+        @setSearchQuery="setSearchQuery"
+      />
     </div>
   </header>
 </template>
@@ -29,6 +32,11 @@ export default {
   name: 'AppHeader',
   components: {
     AppSearchInput
+  },
+  methods: {
+    setSearchQuery (fullNamePath) {
+      this.$emit('setPathForFetch', fullNamePath)
+    }
   }
 }
 </script>

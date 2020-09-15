@@ -33,9 +33,10 @@ export default {
   methods: {
     async fetchMovies () {
       try {
-        axios.get(`${process.env.VUE_APP_API_URL}/discover/movie?sort_by=popularity.desc&api_key=${process.env.VUE_APP_API_KEY}&page=1`)
-        .then(response => {this.movies = response.data.results})
-        console.log(process.env.VUE_APP_API_URL)
+        const fetchData = await axios.get(`${process.env.VUE_APP_API_URL}/discover/movie?sort_by=popularity.desc&api_key=${process.env.VUE_APP_API_KEY}&page=1`)
+        this.movies = {...fetchData.data.results}
+
+        console.log(fetchData)
       }
       catch (error) {
         console.log(error)

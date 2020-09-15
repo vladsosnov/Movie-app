@@ -1,16 +1,18 @@
 <template>
   <div class="app">
-    <app-header />
+    <app-header @setPathForFetch="fetchSearchMoveis" />
     <search-movie-result
-      v-if="searchMovies" 
-      @close-results="clearSearchMovies"
+      :search-movie="allSearchMovies"
+      @close-results="isSearchMovesResultVisible"
     />
-    <router-view/>
+    <router-view />
     <app-footer />
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 import AppHeader from './components/Shared/AppHeader'
 import SearchMovieResult from './components/SearchMovieResult'
 import AppFooter from './components/Shared/AppFooter'
@@ -22,14 +24,30 @@ export default {
     SearchMovieResult,
     AppFooter
   },
+  data () {
+    return {
+      allSearchMovies: {}
+    }
+  },
   computed: {
     searchMovies () {
-      return JSON.stringify(this.$store.state.searchMovies) !== "{}"
+      return this.$store.getters['searchMovies']
     }
   },
   methods: {
-    async clearSearchMovies () {
-      return this.$store.state.searchMovies = {}
+    async fetchSearchMoveis (allPath) {
+      try {
+        const fetchSeatchData = await axios.get(allPath)
+        this.allSearchMovies = {...fetchSeatchData.data.results}
+
+        await this.$store.dispatch('setSearchMovies', this.allSearchMovies)
+      }
+      catch (error) {
+        console.log(error)
+      }
+    },
+    isSearchMovesResultVisible () {
+      this.$store.commit('setSearchMoviesVisibility')
     }
   }
 }

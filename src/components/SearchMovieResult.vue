@@ -1,9 +1,9 @@
 <template>
-  <div class="search-movie-result">
-    <div
-      v-if="searchMovies"
-      class="search-movie-result__content content"
-    >
+  <div
+    v-if="isSearchMovesResultVisible"
+    class="search-movie-result"
+  >
+    <div class="search-movie-result__content content">
       <h2 class="search-movie-result__title">
         Your search result
         <span @click="closeSearchMovieResult">x</span>
@@ -47,6 +47,9 @@ export default {
   computed: {
     searchMovies () {
       return this.$store.state.searchMovies
+    },
+    isSearchMovesResultVisible () {
+      return this.$store.state.isSearchMovieResultVisible
     }
   },
   methods: {

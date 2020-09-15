@@ -1,15 +1,15 @@
 <template>
   <form class="search-box">
     <input
-      v-model="movieName"
+      v-model="searchMovieName"
       type="text"
       placeholder="Search movie..."
       class="search-box__input"
     >
     <button
       class="search-box__button"
-      @keyup.enter="fetchSearchMoveis"
-      @click.prevent="fetchSearchMoveis"
+      @keyup.enter="getSearchMoveisData"
+      @click.prevent="getSearchMoveisData"
     >
       Go
     </button>
@@ -17,36 +17,23 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   name: 'AppSearchInput',
   data () {
     return {
-      movieName : '',
-      pathName: '',
-      movies: {}
+      searchMovieName : '',
+      fullPathName: ''
     }
   },
   watch: {
-    async movieName () {
-      this.pathName = `${process.env.VUE_APP_API_URL}/search/movie?&api_key=${process.env.VUE_APP_API_KEY}&query=${this.movieName}`
+    async searchMovieName () {
+      this.fullPathName = `${process.env.VUE_APP_API_URL}/search/movie?&api_key=${process.env.VUE_APP_API_KEY}&query=${this.searchMovieName}`
     },
   },
-  async mounted () {
-    await this.fetchSearchMoveis()
-  },
   methods: {
-    async fetchSearchMoveis () {
-      try {
-        axios.get(`${this.pathName}`)
-        .then(response => {this.movies = response.data.results})
-
-        await this.$store.dispatch('setSearchMovies', this.movies)
-      }
-      catch (error) {
-        console.log(error)
-      }
+    getSearchMoveisData () {
+      this.$store.commit('setSearchMoviesVisibility')
+      this.$emit('setSearchQuery', this.fullPathName)
     }
   }
 }
