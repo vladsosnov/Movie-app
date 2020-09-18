@@ -52,8 +52,8 @@ export default {
   margin: 0 auto;
   padding: 0 1rem;
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
+  justify-content: space-between;
 
   &__content {
     position: relative;
