@@ -23,7 +23,11 @@
       v-else
       class="saved-movies-view__empty-state"
     >
-      You haven't saved any movies yet
+      <h2>You haven't saved any movies yet</h2>
+      <img
+        src="@/assets/images/search-movie.png"
+        alt="Search result"
+      >
     </div>
   </div>
 </template>
@@ -91,6 +95,10 @@ export default {
     text-align: center;
     font-size: 3rem;
     font-weight: 600;
+
+    h2 {
+      font-size: 3rem;
+    }
   }
 }
 </style>

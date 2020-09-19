@@ -1,17 +1,19 @@
 <template>
-  <div
-    v-if="isSearchMovesResultVisible"
+  <section
+    v-if="isSectionVisible"
     class="search-movie-result"
   >
-    <div class="search-movie-result__content content">
+    <div
+      v-if="isSearchResultVisible"
+      class="search-movie-result__content content"
+    >
       <h2 class="search-movie-result__title">
         Your search result
-        <span @click="closeSearchMovieResult">x</span>
       </h2>
       <div class="search-movie-result__wrap">
         <div
           v-for="searchMovie in searchMovies"
-            :key="searchMovie.id"
+          :key="searchMovie.id"
           class="search-movie-result__box-item box-item"
         >
           <img
@@ -32,13 +34,23 @@
         </div>
       </div>
     </div>
-    <!-- <div
+    <div
       v-else
-      class="saved-movies-view__empty-state"
+      class="search-movie-result__empty-state"
     >
-      You haven't saved any movies yet
-    </div> -->
-  </div>
+      <h2>There are no results for your query</h2>
+      <img
+        src="@/assets/images/no-results.png"
+        alt="No results"
+      >
+    </div>
+    <span
+      class="close-icon"
+      @click="closeSearchMovieResult"
+    >
+      x
+    </span>
+  </section>
 </template>
 
 <script>
@@ -46,10 +58,13 @@ export default {
   name: 'SearchMovieResult',
   computed: {
     searchMovies () {
-      return this.$store.state.searchMovies
+      return { ...this.$store.state.searchMovies }
     },
-    isSearchMovesResultVisible () {
+    isSectionVisible () {
       return this.$store.state.isSearchMovieResultVisible
+    },
+    isSearchResultVisible () {
+      return JSON.stringify({ ...this.$store.state.searchMovies }) !== '{}'
     }
   },
   methods: {
@@ -62,6 +77,7 @@ export default {
 
 <style lang="scss" scoped>
 .search-movie-result {
+  position: relative;
   max-width: 80rem;
   margin: 0 auto 2rem;
   padding: 0 1rem;
@@ -71,21 +87,10 @@ export default {
   }
 
   &__title {
-    position: relative;
     margin-top: 0;
     font-size: 1.5rem;
     font-weight: 600;
     color: #333;
-
-    span {
-      position: absolute;
-      right: 1rem;
-      cursor: pointer;
-
-      &:hover {
-        color: #000;
-      }
-    }
   }
 
   &__wrap {
@@ -123,9 +128,25 @@ export default {
   }
 
   &__empty-state {
-    text-align: center;
-    font-size: 3rem;
-    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+
+    h2 {
+      font-size: 2rem;
+      text-align: center;
+    }
+  }
+
+  .close-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform .2s ease;
   }
 }
 </style>
