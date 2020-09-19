@@ -63,9 +63,9 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        text-align: center;
         background-color: #ccc;
         border: 1px solid;
+        text-align: center;
         cursor: pointer;
         transition: background-color .2s ease;
 
