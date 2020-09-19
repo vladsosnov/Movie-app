@@ -11,27 +11,11 @@
         Your search result
       </h2>
       <div class="search-movie-result__wrap">
-        <div
-          v-for="searchMovie in searchMovies"
-          :key="searchMovie.id"
-          class="search-movie-result__box-item box-item"
-        >
-          <img
-            v-if="searchMovie.poster_path !== null" 
-            :src="`https://image.tmdb.org/t/p/w1280${searchMovie.poster_path}`" 
-            :alt="searchMovie.title"
-            class="box-item__image"
-          >
-          <div
-            v-else
-            class="box-item__un-image"
-          >
-            Not found
-          </div>
-          <p class="box-item__title">
-            {{ searchMovie.title }}
-          </p>
-        </div>
+        <movie-card
+          v-for="movie in movies"
+          :key="movie.id"
+          :movie="movie"
+        />
       </div>
     </div>
     <div
@@ -54,12 +38,19 @@
 </template>
 
 <script>
+import MovieCard from '../components/MovieCard'
+
 export default {
   name: 'SearchMovieResult',
+  props: {
+    movies: {
+      required: true
+    }
+  },
+  components: {
+    MovieCard
+  },
   computed: {
-    searchMovies () {
-      return { ...this.$store.state.searchMovies }
-    },
     isSectionVisible () {
       return this.$store.state.isSearchMovieResultVisible
     },
@@ -79,7 +70,7 @@ export default {
 .search-movie-result {
   position: relative;
   max-width: 80rem;
-  margin: 0 auto 2rem;
+  margin: 0 auto 2rem auto;
   padding: 0 1rem;
 
   &__content {
@@ -94,40 +85,14 @@ export default {
   }
 
   &__wrap {
+    margin-bottom: 2rem;
     display: grid;
     grid-gap: 2rem;
     grid-template-columns: repeat(5, 1fr);
   }
 
-  &__box-item {
-    display: flex;
-    flex-direction: column;
-
-    .box-item {
-      &__image {
-        max-width: 210px;
-        height: 315px;
-      }
-
-      &__un-image {
-        width: 210px;
-        height: 315px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 2rem;
-        font-weight: 600;
-        background-color: #908c8c;
-        color: #fff;
-      }
-
-      &__title {
-        max-width: 210px;
-      }
-    }
-  }
-
   &__empty-state {
+    padding-bottom: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -1,8 +1,11 @@
 <template>
   <div class="app">
-    <app-header @setPathForFetch="fetchSearchMoveis" />
+    <app-header
+      :autoCompleteMoviesTitle="moviesTitleToAutoComplete"
+      @setPathForFetch="fetchSearchMoveis"
+    />
     <search-movie-result
-      :search-movie="allSearchMovies"
+      :movies="allSearchMovies"
       @close-results="isSearchMovesResultVisible"
     />
     <router-view />
@@ -26,8 +29,12 @@ export default {
   },
   data () {
     return {
-      allSearchMovies: {}
+      allSearchMovies: {},
+      moviesTitleToAutoComplete: ''
     }
+  },
+  async mounted () {
+    await this.fetchMoviesTitle()
   },
   computed: {
     searchMovies () {
@@ -35,6 +42,15 @@ export default {
     }
   },
   methods: {
+    async fetchMoviesTitle () {
+      try {
+        const fetchData = await axios.get(`${process.env.VUE_APP_API_URL}/discover/movie?sort_by=popularity.desc&api_key=${process.env.VUE_APP_API_KEY}`)
+        this.moviesTitleToAutoComplete = Object.values(fetchData.data.results).map(item => item.title)
+      }
+      catch (error) {
+        console.log(error)
+      }
+    },
     async fetchSearchMoveis (allPath) {
       try {
         const fetchSeatchData = await axios.get(allPath)

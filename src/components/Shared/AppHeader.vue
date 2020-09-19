@@ -3,7 +3,7 @@
     <div class="app-header__container">
       <router-link :to="{ name: 'Main' }">
         <img
-          src="../../assets/images/film-logo.svg"
+          src="@/assets/images/film-logo.svg"
           alt="Logo"
           class="app-header__logo"
         >
@@ -18,6 +18,7 @@
         </router-link>
       </nav>
       <app-search-input
+        :autoCompleteMoviesTitle="autoCompleteMoviesTitle"
         class="app-header__search-box"
         @setSearchQuery="setSearchQuery"
       />
@@ -30,6 +31,11 @@ import AppSearchInput from './AppSearchInput'
 
 export default {
   name: 'AppHeader',
+  props: {
+    autoCompleteMoviesTitle: {
+      required: true
+    }
+  },
   components: {
     AppSearchInput
   },

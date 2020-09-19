@@ -1,11 +1,13 @@
 <template>
   <form class="search-box">
-    <input
+    <ejs-autocomplete
       v-model="searchMovieName"
-      type="text"
-      placeholder="Search movie..."
-      class="search-box__input"
-    >
+      :dataSource="autocompleteMovie"
+      :fields="dataFields"
+      :showClearButton="false"
+      :highlight="true"
+      placeholder="Select a movie"
+    />
     <button
       class="search-box__button"
       @keyup.enter="getSearchMoveisData"
@@ -18,9 +20,15 @@
 
 <script>
 export default {
-  name: 'AppSearchInput',
+  name: '',
+  props: {
+    autoCompleteMoviesTitle: {
+      required: true
+    }
+  },
   data () {
     return {
+      dataFields: { value: 'title' },
       searchMovieName : '',
       fullPathName: ''
     }
@@ -28,6 +36,11 @@ export default {
   watch: {
     async searchMovieName () {
       this.fullPathName = `${process.env.VUE_APP_API_URL}/search/movie?&api_key=${process.env.VUE_APP_API_KEY}&query=${this.searchMovieName}`
+    }
+  },
+  computed: {
+    autocompleteMovie () {
+      return Object.values(this.autoCompleteMoviesTitle)
     }
   },
   methods: {
@@ -40,25 +53,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import url(https://cdn.syncfusion.com/ej2/material.css);
+
 .search-box {
-  &__input {
-    margin: 0;
-    padding: .5rem 1rem;
-    font-size: 1rem;
-    font-weight: 500;
-    border-radius: 3rem;
-    outline: none;
-    transition: all .2s ease;
-
-    &:hover {
-      box-shadow: 0 1px 2px 1px #b7a3a3;
-    }
-  }
-
   &__button {
     position: absolute;
-    right: 1rem;
-    top: 7px;
+    right: 0;
+    top: 3px;
     padding: 2px 10px;
     background: no-repeat;
     border: 1px solid #333;

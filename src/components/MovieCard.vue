@@ -6,6 +6,12 @@
       :alt="movie.title"
       class="movie-card__poster"
     >
+    <div
+      v-else
+      class="movie-card__un-poster"
+    >
+      Not Found
+    </div>
     <div class="movie-card__detail detail">
       <p class="detail__title">
         {{ movie.title }}
@@ -74,7 +80,7 @@ export default {
   &::before {
     content: '';
     position: absolute;
-    width: 100%;
+    width: 210px;
     max-height: 315px;
     height: 100%;
     background: rgba(0, 0, 0, .8);
@@ -90,15 +96,27 @@ export default {
   }
 
   &__poster {
-    max-width: 210px;
+    width: 210px;
+    height: 315px;
+  }
+
+  &__un-poster {
+    width: 210px;
+    height: 315px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 600;
+    background-color: #908c8c;
+    color: #fff;
   }
 
   &__detail {
     position: absolute;
     top: 0;
-    width: 100%;
-    height: 100%;
-    max-height: 315px;
+    width: 210px;
+    height: 315px;
     display: flex;
     flex-direction: column;
     align-items: center;
