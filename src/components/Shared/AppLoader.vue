@@ -47,8 +47,8 @@ export default {
     .circle-list {
       &__item {
         position: absolute;
-        left: 0;
         top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         transform: rotate(calc(18deg * var(--i)));
