@@ -33,7 +33,7 @@
     >
       <h2>You haven't saved any movies yet</h2>
       <img
-        src="@/assets/images/search-movie.png"
+        src="@/assets/images/not-found-saved.png"
         alt="Search result"
       >
     </div>
@@ -86,6 +86,8 @@ export default {
             .title {
               &__text {
                 margin: 0;
+                margin-right: .2rem;
+                font-size: .875rem;
               }
 
               &__button {

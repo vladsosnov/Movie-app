@@ -45,51 +45,8 @@
 export default {
   name: 'AppCarousel',
   props: {
-    movies: {
+    newMovies: {
       required: true
-    }
-  },
-  data () {
-    return {
-      newMovies: [
-        {
-          id: '1',
-          title: 'Mulan',
-          vote: '7.7',
-          image: 'https://image.tmdb.org/t/p/w1280/aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg',
-          overview: `
-            In Madrid, Spain, a mysterious serial killer ruthlessly murders his victims by recreating the first appearance of several
-            comic book superheroes. Cosme, a veteran police inspector who is about to retire, works on the case along with the tormented
-            inspector David Valentín and his own son Jorge Elías, a nerdy young man who owns a comic book store.
-          `,
-          release: '2020-09-10'
-        },
-        {
-          id: '2',
-          title: 'The 2nd',
-          vote: '5.1',
-          image: 'https://image.tmdb.org/t/p/w1280/o1WvNhoackad1QiAGRgjJCQ1Trj.jpg',
-          overview: `
-            Secret-service agent Vic Davis is on his way to pick up his estranged son, Sean, from his college campus when he
-            finds himself in the middle of a high-stakes terrorist operation. His son's friend Erin Walton, the daughter of
-            Supreme Court Justice Walton is the target, and this armed faction will stop at nothing to kidnap her and use her as
-            leverage for a pending landmark legal case.
-          `,
-          release: '2020-09-01'
-        },
-        {
-          id: '3',
-          title: 'Project Power',
-          vote: '6.7',
-          image: 'https://image.tmdb.org/t/p/w1280/TnOeov4w0sTtV2gqICqIxVi74V.jpg',
-          overview: `
-            In Madrid, Spain, a mysterious serial killer ruthlessly murders his victims by recreating the first appearance of several
-            comic book superheroes. Cosme, a veteran police inspector who is about to retire, works on the case along with the tormented
-            inspector David Valentín and his own son Jorge Elías, a nerdy young man who owns a comic book store.
-          `,
-          release: '2020-08-14'
-        }
-      ]
     }
   },
   methods: {
@@ -113,6 +70,10 @@ export default {
 <style lang="scss" scoped>
 .app-carousel {
   margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 
   &__slide {
     display: flex;

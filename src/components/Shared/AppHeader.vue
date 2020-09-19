@@ -64,6 +64,10 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+    }
   }
 
   &__logo {
@@ -84,6 +88,11 @@ export default {
 
         &--active {
           font-weight: 600;
+        }
+
+        @media (max-width: 600px) {
+          display: block;
+          margin: 1rem 0;
         }
       }
     }

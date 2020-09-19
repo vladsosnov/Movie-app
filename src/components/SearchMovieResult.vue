@@ -89,6 +89,17 @@ export default {
     display: grid;
     grid-gap: 2rem;
     grid-template-columns: repeat(5, 1fr);
+
+    @media (max-width: 1280px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 900px) {
+      margin-right: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
   }
 
   &__empty-state {
@@ -108,7 +119,7 @@ export default {
   .close-icon {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 1rem;
     font-size: 1.5rem;
     cursor: pointer;
     transition: transform .2s ease;
