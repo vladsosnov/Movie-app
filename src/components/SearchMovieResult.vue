@@ -142,8 +142,8 @@ export default {
 
   .close-icon {
     position: absolute;
-    right: 0;
     top: 0;
+    right: 0;
     font-size: 1.5rem;
     cursor: pointer;
     transition: transform .2s ease;
