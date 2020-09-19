@@ -36,7 +36,10 @@ export default {
   }
 
   @media (max-width: 900px) {
-    grid-template-columns: repeat(2, 1fr);
+    margin-right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 </style>

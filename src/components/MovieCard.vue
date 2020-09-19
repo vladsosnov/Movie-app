@@ -50,14 +50,18 @@ export default {
   },
   methods: {
     onAddMovieToSavedClick (movie) {
-      this.$store.dispatch('addMovieToSaved', {
+      const allSavedMovies = [...this.$store.state.savedMovies]
+      
+      const newMovieData = {
         id: movie.id,
         title: movie.title,
         poster_path: `${this.imagePath}${movie.poster_path}`,
         overview: movie.overview
-      })
+      }
 
-      alert('Movie saved!')
+      allSavedMovies.some(item => item.id === movie.id) !== true 
+        ? this.$store.dispatch('addMovieToSaved', newMovieData)
+        : ''
     }
   }
 }

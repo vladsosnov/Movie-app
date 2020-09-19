@@ -26,6 +26,11 @@ export const store = new Vuex.Store({
         overview: movie.overview
       })
     },
+    async deleteMovieFromSaved (state, id) {
+      const index = state.savedMovies.findIndex(item => item.id === id)
+
+      state.savedMovies.splice(index, 1)
+    },
     setSearchMoviesVisibility (state) {
       state.isSearchMovieResultVisible = !state.isSearchMovieResultVisible
     }
@@ -36,6 +41,9 @@ export const store = new Vuex.Store({
     },
     addMovieToSaved (context, movie) {
       context.commit('addMovieToSaved', movie)
-    }
+    },
+    async deleteMovieFromSaved (context, id) {
+      context.commit('deleteMovieFromSaved', id)
+    },
   }
 })

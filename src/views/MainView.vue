@@ -42,8 +42,6 @@ export default {
       try {
         const fetchData = await axios.get(`${process.env.VUE_APP_API_URL}/discover/movie?sort_by=popularity.desc&api_key=${process.env.VUE_APP_API_KEY}&page=${this.currentPage}`)
         this.movies = {...fetchData.data.results}
-
-        console.log(fetchData)
       }
       catch (error) {
         console.log(error)

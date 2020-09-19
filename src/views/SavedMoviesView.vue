@@ -1,11 +1,11 @@
 <template>
   <div class="saved-movies-view">
     <div
-      v-if="uniqMovies.length > 0"
+      v-if="savedMovies.length > 0"
       class="saved-movies-view__content content"
     >
       <div
-        v-for="savedMovie in uniqMovies"
+        v-for="savedMovie in savedMovies"
         :key="savedMovie.id"
         class="content__card card"
       >
@@ -14,9 +14,17 @@
           :alt="savedMovie.title"
           class="card__image"
         >
-        <p class="card__title">
-          {{ savedMovie.title }}
-        </p>
+        <div class="card__title title">
+          <p class="title__text">
+            {{ savedMovie.title }}
+          </p>
+          <button
+            class="title__button"
+            @click="onDeleteMovieBtnClick(savedMovie)"
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </div>
     <div
@@ -35,28 +43,14 @@
 <script>
 export default {
   name: 'SavedMoviesView',
-  data () {
-    return {
-      uniqMovies: []
-    }
-  },
   computed: {
     savedMovies () {
-      return this.$store.state.savedMovies
+      return [...this.$store.state.savedMovies]
     }
   },
-  async mounted () {
-    await this.uniqSavedMovies()
-  },
   methods: {
-    uniqSavedMovies () {
-      let savetObj = {}
-
-      this.savedMovies.forEach(item =>{
-        savetObj[item['id']] = item
-      })
-
-      this.uniqMovies = Object.keys(savetObj).map(id => savetObj[id])
+    async onDeleteMovieBtnClick (savedMovie) {
+      this.$store.dispatch('deleteMovieFromSaved', savedMovie.id)
     }
   }
 }
@@ -84,7 +78,32 @@ export default {
           }
 
           &__title {
-            margin-bottom: 0;
+            margin-top: .5rem;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            .title {
+              &__text {
+                margin: 0;
+              }
+
+              &__button {
+                max-width: 10rem;
+                padding: .5rem 1rem;
+                border-radius: 3rem;
+                background: #ff0000;
+                border: 1px solid #333;
+                outline: none;
+                transition: background-color .2s ease;
+                cursor: pointer;
+                color: #fff;
+
+                &:hover {
+                  background-color: #ff0000b5;
+                }
+              }
+            }
           }
         }
       }
