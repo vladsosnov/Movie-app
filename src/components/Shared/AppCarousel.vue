@@ -112,7 +112,7 @@ export default {
 
 <style lang="scss" scoped>
 .app-carousel {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 
   &__slide {
     display: flex;

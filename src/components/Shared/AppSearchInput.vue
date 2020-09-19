@@ -1,5 +1,5 @@
 <template>
-  <form class="search-box">
+  <form class="app-search-input">
     <ejs-autocomplete
       v-model="searchMovieName"
       :dataSource="autocompleteMovie"
@@ -9,7 +9,7 @@
       placeholder="Select a movie"
     />
     <button
-      class="search-box__button"
+      class="app-search-input__button"
       @keyup.enter="getSearchMoveisData"
       @click.prevent="getSearchMoveisData"
     >
@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: '',
+  name: 'AppSearchInput',
   props: {
     autoCompleteMoviesTitle: {
       required: true
@@ -55,7 +55,7 @@ export default {
 <style lang="scss" scoped>
 @import url(https://cdn.syncfusion.com/ej2/material.css);
 
-.search-box {
+.app-search-input {
   &__button {
     position: absolute;
     right: 0;
