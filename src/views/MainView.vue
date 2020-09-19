@@ -5,6 +5,10 @@
       <movie-list :movies="movies" />
       <soon-movie-sidebar />
     </div>
+    <app-pagination
+      @prev-button="onPrevBtnClick"
+      @next-button="onNextBtnClick"
+    />
   </main>
 </template>
 
@@ -14,17 +18,20 @@ import axios from 'axios'
 import AppCarousel from '../components/Shared/AppCarousel'
 import MovieList from '../components/MovieList'
 import SoonMovieSidebar from '../components/SoonMovieSidebar'
+import AppPagination from '../components/Shared/AppPagination'
 
 export default {
   name: 'MainView',
   components: {
     AppCarousel,
     MovieList,
-    SoonMovieSidebar
+    SoonMovieSidebar,
+    AppPagination
   },
   data () {
     return {
-      movies: {}
+      movies: {},
+      currentPage: 1
     }
   },
   async mounted () {
@@ -33,7 +40,7 @@ export default {
   methods: {
     async fetchMovies () {
       try {
-        const fetchData = await axios.get(`${process.env.VUE_APP_API_URL}/discover/movie?sort_by=popularity.desc&api_key=${process.env.VUE_APP_API_KEY}&page=1`)
+        const fetchData = await axios.get(`${process.env.VUE_APP_API_URL}/discover/movie?sort_by=popularity.desc&api_key=${process.env.VUE_APP_API_KEY}&page=${this.currentPage}`)
         this.movies = {...fetchData.data.results}
 
         console.log(fetchData)
@@ -41,6 +48,16 @@ export default {
       catch (error) {
         console.log(error)
       }
+    },
+    async onPrevBtnClick () {
+      if (this.currentPage !== 1) {
+        this.currentPage--
+        await this.fetchMovies()
+      }  
+    },
+    async onNextBtnClick () {
+      this.currentPage++
+      await this.fetchMovies()
     }
   }
 }
@@ -58,6 +75,7 @@ export default {
   &__content {
     position: relative;
     display: flex;
+    margin-bottom: 3rem;
   }
 }
 </style>

@@ -28,7 +28,7 @@ export default {
   watch: {
     async searchMovieName () {
       this.fullPathName = `${process.env.VUE_APP_API_URL}/search/movie?&api_key=${process.env.VUE_APP_API_KEY}&query=${this.searchMovieName}`
-    },
+    }
   },
   methods: {
     getSearchMoveisData () {
