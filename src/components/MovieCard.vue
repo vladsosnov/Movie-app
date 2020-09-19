@@ -71,10 +71,10 @@ export default {
   &::before {
     content: '';
     position: absolute;
-    background: rgba(0, 0, 0, .8);
     width: 100%;
     max-height: 315px;
     height: 100%;
+    background: rgba(0, 0, 0, .8);
     opacity: 0;
     transition: all .3s ease-in;
   }
@@ -91,7 +91,6 @@ export default {
   }
 
   &__detail {
-    opacity: 0;
     position: absolute;
     top: 0;
     width: 100%;
@@ -101,6 +100,7 @@ export default {
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
+    opacity: 0;
     color: #fff;
 
     &::-webkit-scrollbar {
@@ -130,8 +130,8 @@ export default {
       }
 
       &__overview {
-        font-size: 14px;
         padding: .5rem;
+        font-size: 14px;
       }
 
       &__save-button {
