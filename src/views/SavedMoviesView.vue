@@ -95,9 +95,9 @@ export default {
                 background: #ff0000;
                 border: 1px solid #333;
                 outline: none;
-                transition: background-color .2s ease;
                 cursor: pointer;
                 color: #fff;
+                transition: background-color .2s ease;
 
                 &:hover {
                   background-color: #ff0000b5;
