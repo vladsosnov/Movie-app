@@ -51,7 +51,6 @@ export default {
   methods: {
     onAddMovieToSavedClick (movie) {
       const allSavedMovies = [...this.$store.state.savedMovies]
-      
       const newMovieData = {
         id: movie.id,
         title: movie.title,
