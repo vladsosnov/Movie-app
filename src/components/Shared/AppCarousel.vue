@@ -1,8 +1,8 @@
 <template>
   <carousel
     class="app-carousel"
-    :autoplay="false"
-    :autoplayTimeout="6000"
+    :autoplay="true"
+    :autoplayTimeout="5000"
     :loop="true"
   >
     <slide

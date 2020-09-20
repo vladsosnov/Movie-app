@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     getSearchMoveisData () {
-      this.$store.commit('setSearchMoviesVisibility')
+      this.$store.commit('setSearchResultVisibility')
       this.$emit('setSearchQuery', this.fullPathName)
     }
   }

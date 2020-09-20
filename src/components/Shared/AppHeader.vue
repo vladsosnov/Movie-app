@@ -3,7 +3,7 @@
     <div class="app-header__container">
       <router-link :to="{ name: 'Main' }">
         <img
-          src="@/assets/images/film-logo.svg"
+          src="@/assets/images/movie-logo.svg"
           alt="Logo"
           class="app-header__logo"
         >
@@ -40,8 +40,8 @@ export default {
     AppSearchInput
   },
   methods: {
-    setSearchQuery (fullNamePath) {
-      this.$emit('setPathForFetch', fullNamePath)
+    setSearchQuery (searchPath) {
+      this.$emit('set-search-path', searchPath)
     }
   }
 }

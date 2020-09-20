@@ -31,10 +31,13 @@
       v-else
       class="saved-movies-view__empty-state"
     >
-      <h2>You haven't saved any movies yet</h2>
+      <h2 class="title">
+        You haven't saved any movies yet
+      </h2>
       <img
         src="@/assets/images/not-found-saved.png"
         alt="Search result"
+        class="image"
       >
     </div>
   </div>
@@ -67,6 +70,12 @@ export default {
     display: grid;
     grid-gap: 2rem;
     grid-template-columns: repeat(4, 1fr);
+
+    @media (max-width: 992px) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
     .content {
       &__card {
@@ -117,8 +126,16 @@ export default {
     font-size: 3rem;
     font-weight: 600;
 
-    h2 {
+    .title{
       font-size: 3rem;
+
+      @media (max-width: 768px) {
+        font-size: 2rem;
+      }
+    }
+
+    .image {
+      max-width: 100%;
     }
   }
 }

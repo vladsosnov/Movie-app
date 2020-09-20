@@ -1,16 +1,16 @@
 <template>
   <section
     v-if="isSectionVisible"
-    class="search-movie-result"
+    class="search-result"
   >
     <div
       v-if="isSearchResultVisible"
-      class="search-movie-result__content content"
+      class="search-result__content content"
     >
-      <h2 class="search-movie-result__title">
+      <h2 class="search-result__title">
         Your search result
       </h2>
-      <div class="search-movie-result__wrap">
+      <div class="search-result__wrap">
         <movie-card
           v-for="movie in movies"
           :key="movie.id"
@@ -20,17 +20,18 @@
     </div>
     <div
       v-else
-      class="search-movie-result__empty-state"
+      class="search-result__empty-state"
     >
-      <h2>There are no results for your query</h2>
+      <h2 class="title">There are no results for your query</h2>
       <img
         src="@/assets/images/no-results.png"
         alt="No results"
+        class="image"
       >
     </div>
     <span
       class="close-icon"
-      @click="closeSearchMovieResult"
+      @click="closeSearchResult"
     >
       x
     </span>
@@ -41,7 +42,7 @@
 import MovieCard from '../components/MovieCard'
 
 export default {
-  name: 'SearchMovieResult',
+  name: 'SearchResult',
   props: {
     movies: {
       required: true
@@ -52,14 +53,14 @@ export default {
   },
   computed: {
     isSectionVisible () {
-      return this.$store.state.isSearchMovieResultVisible
+      return this.$store.state.isSearchResultVisible
     },
     isSearchResultVisible () {
       return JSON.stringify({ ...this.$store.state.searchMovies }) !== '{}'
     }
   },
   methods: {
-    closeSearchMovieResult () {
+    closeSearchResult () {
       this.$emit('close-results')
     }
   }
@@ -67,7 +68,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.search-movie-result {
+.search-result {
   position: relative;
   max-width: 80rem;
   margin: 0 auto 2rem auto;
@@ -110,9 +111,13 @@ export default {
     align-items: center;
     border-bottom: 1px solid #ccc;
 
-    h2 {
+    .title {
       font-size: 2rem;
       text-align: center;
+    }
+
+    .image {
+      max-width: 100%;
     }
   }
 

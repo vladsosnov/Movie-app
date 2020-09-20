@@ -4,7 +4,7 @@
       Soon on the site
     </h2>
     <div
-      v-for="soonMovie in soonMovie"
+      v-for="soonMovie in soonMovies"
       :key="soonMovie.id"
       class="soon-movie-sidebar__movies movie"
     >
@@ -22,25 +22,9 @@
 <script>
 export default {
   name: 'SoonMovieSidebar',
-  data () {
-    return {
-      soonMovie: [
-        {
-          id: '337401',
-          title: 'Mulan',
-          image: 'https://image.tmdb.org/t/p/w1280/aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg',
-        },
-        {
-          id: '724717',
-          title: 'The 2nd',
-          image: 'https://image.tmdb.org/t/p/w1280/o1WvNhoackad1QiAGRgjJCQ1Trj.jpg'
-        },
-        {
-          id: '605116',
-          title: 'Project Power',
-          image: 'https://image.tmdb.org/t/p/w1280/TnOeov4w0sTtV2gqICqIxVi74V.jpg'
-        }
-      ]
+  props: {
+    soonMovies: {
+      required: true
     }
   }
 }

@@ -7,7 +7,7 @@ export const store = new Vuex.Store({
   state: {
     searchMovies: [],
     savedMovies: [],
-    isSearchMovieResultVisible: false
+    isSearchResultVisible: false
   },
   getters: {
     searchMovies (state) {
@@ -31,8 +31,8 @@ export const store = new Vuex.Store({
 
       state.savedMovies.splice(index, 1)
     },
-    setSearchMoviesVisibility (state) {
-      state.isSearchMovieResultVisible = !state.isSearchMovieResultVisible
+    setSearchResultVisibility (state) {
+      state.isSearchResultVisible = !state.isSearchResultVisible
     }
   },
   actions: {

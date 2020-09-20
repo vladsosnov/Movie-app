@@ -10,7 +10,7 @@
       class="main-view__content"
     >
       <movie-list :movies="movies" />
-      <soon-movie-sidebar />
+      <soon-movie-sidebar :soonMovies="soonMovies" />
     </div>
     <app-loader
       v-else
@@ -85,6 +85,23 @@ export default {
             conflict on how best to navigate a new city, house and school.
           `,
           release: '2015-06-09'
+        }
+      ],
+      soonMovies: [
+        {
+          id: '337401',
+          title: 'Mulan',
+          image: 'https://image.tmdb.org/t/p/w1280/aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg',
+        },
+        {
+          id: '724717',
+          title: 'The 2nd',
+          image: 'https://image.tmdb.org/t/p/w1280/o1WvNhoackad1QiAGRgjJCQ1Trj.jpg'
+        },
+        {
+          id: '605116',
+          title: 'Project Power',
+          image: 'https://image.tmdb.org/t/p/w1280/TnOeov4w0sTtV2gqICqIxVi74V.jpg'
         }
       ],
       currentPage: 1,

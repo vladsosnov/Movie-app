@@ -1,12 +1,12 @@
 <template>
   <div class="app">
     <app-header
-      :autoCompleteMoviesTitle="moviesTitleToAutoComplete"
-      @setPathForFetch="fetchSearchMoveis"
+      :autoCompleteMoviesTitle="titlesToAutoComplete"
+      @set-search-path="fetchSearchMoveis"
     />
-    <search-movie-result
-      :movies="allSearchMovies"
-      @close-results="isSearchMovesResultVisible"
+    <search-result
+      :movies="searchResult"
+      @close-results="isSearchResultVisible"
     />
     <router-view />
     <app-footer />
@@ -17,20 +17,20 @@
 import axios from 'axios'
 
 import AppHeader from './components/Shared/AppHeader'
-import SearchMovieResult from './components/SearchMovieResult'
+import SearchResult from './components/SearchResult'
 import AppFooter from './components/Shared/AppFooter'
 
 export default {
   name: 'App',
   components: {
     AppHeader,
-    SearchMovieResult,
+    SearchResult,
     AppFooter
   },
   data () {
     return {
-      allSearchMovies: {},
-      moviesTitleToAutoComplete: ''
+      searchResult: {},
+      titlesToAutoComplete: ''
     }
   },
   async mounted () {
@@ -45,25 +45,25 @@ export default {
     async fetchMoviesTitle () {
       try {
         const fetchData = await axios.get(`${process.env.VUE_APP_API_URL}/discover/movie?sort_by=popularity.desc&api_key=${process.env.VUE_APP_API_KEY}`)
-        this.moviesTitleToAutoComplete = Object.values(fetchData.data.results).map(item => item.title)
+        this.titlesToAutoComplete = Object.values(fetchData.data.results).map(item => item.title)
       }
       catch (error) {
         console.log(error)
       }
     },
-    async fetchSearchMoveis (allPath) {
+    async fetchSearchMoveis (searchMoviePath) {
       try {
-        const fetchSeatchData = await axios.get(allPath)
-        this.allSearchMovies = {...fetchSeatchData.data.results}
+        const fetchSeatchData = await axios.get(searchMoviePath)
+        this.searchResult = {...fetchSeatchData.data.results}
 
-        await this.$store.dispatch('setSearchMovies', this.allSearchMovies)
+        await this.$store.dispatch('setSearchMovies', this.searchResult)
       }
       catch (error) {
         console.log(error)
       }
     },
-    isSearchMovesResultVisible () {
-      this.$store.commit('setSearchMoviesVisibility')
+    isSearchResultVisible () {
+      this.$store.commit('setSearchResultVisibility')
     }
   }
 }
