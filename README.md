@@ -1,6 +1,6 @@
 # Movie app
 
-View site: https://vladsosnov.github.io/movie-app/ and click to the logo
+View site: https://vladsosnov.github.io/movie-app/ and click to the logo.
 
 ## Project setup
 ```
