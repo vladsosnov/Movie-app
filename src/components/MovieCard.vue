@@ -152,7 +152,7 @@ export default {
 
       &__overview {
         padding: .5rem;
-        font-size: 14px;
+        font-size: .875rem;
       }
 
       &__save-button {
