@@ -22,19 +22,21 @@
       v-else
       class="search-result__empty-state"
     >
-      <h2 class="title">There are no results for your query</h2>
+      <h2 class="title">
+        There are no results for your query
+      </h2>
       <img
         src="@/assets/images/no-results.png"
         alt="No results"
         class="image"
       >
     </div>
-    <span
+    <i
       class="close-icon"
       @click="closeSearchResult"
     >
       x
-    </span>
+    </i>
   </section>
 </template>
 
