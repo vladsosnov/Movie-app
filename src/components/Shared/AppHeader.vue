@@ -55,7 +55,7 @@ export default {
   padding: .5rem 1rem;
   transition: .4s ease;
   background-color: #f2f2f2;
-  box-shadow: 0 1px 3px 0 rgba(0,0,0, .1), 0 1px 2px 0 rgba(0,0,0, .06);
+  box-shadow: 0 1px 3px 0 rgba(0,0,0, .1), 0 1px .125rem 0 rgba(0,0,0, .06);
   z-index: 100;
 
   &__container {
