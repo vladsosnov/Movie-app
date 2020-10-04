@@ -114,8 +114,8 @@ export default {
     border-bottom: 1px solid #ccc;
 
     .title {
-      font-size: 2rem;
       text-align: center;
+      font-size: 2rem;
     }
 
     .image {
